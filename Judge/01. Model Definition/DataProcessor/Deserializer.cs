@@ -58,7 +58,7 @@ namespace SocialNetwork.DataProcessor
                     continue;
                 }
 
-                // Check if Conversation exists
+                
                 var conversationExists = dbContext.Conversations.Any(c => c.Id == messageDto.ConversationId);
                 if (!conversationExists)
                 {
@@ -66,7 +66,7 @@ namespace SocialNetwork.DataProcessor
                     continue;
                 }
 
-                // Check if Sender exists
+              
                 var senderExists = dbContext.Users.Any(u => u.Id == messageDto.SenderId);
                 if (!senderExists)
                 {
@@ -74,7 +74,6 @@ namespace SocialNetwork.DataProcessor
                     continue;
                 }
 
-                // Check for duplicates
                 bool isDuplicate = validMessages.Any(m => 
                     m.Content == messageDto.Content && 
                     m.SentAt == sentAtDate && 
@@ -123,7 +122,7 @@ namespace SocialNetwork.DataProcessor
                     continue;
                 }
 
-                // Check if DateTime is valid
+               
                 DateTime createdAtDate;
                 bool isDateValid = DateTime.TryParseExact(postDto.CreatedAt, "yyyy-MM-ddTHH:mm:ss",
                     CultureInfo.InvariantCulture, DateTimeStyles.None, out createdAtDate);
@@ -142,7 +141,7 @@ namespace SocialNetwork.DataProcessor
                     continue;
                 }
 
-                // Check for duplicates
+               
                 bool isDuplicate = validPosts.Any(p =>
                     p.Content == postDto.Content &&
                     p.CreatedAt == createdAtDate &&
